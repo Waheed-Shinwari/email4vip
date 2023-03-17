@@ -1,0 +1,4 @@
+
+
+
+gcc -o e4vip e4vip.c ./Send/sendEmail2.c ./Send/getCredentials2.c ./Send/RecordVoic.c ./Send/start-checking-headphone-status.c ./Send/headphone-status.c ./Fetch/fetchEmail2.c ./Fetch/SearchMSGid.c ./Fetch/SearchRawEmail.c ./Send/send_doc.c ./email-validation.c -lcurl

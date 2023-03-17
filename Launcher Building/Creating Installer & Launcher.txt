@@ -1,0 +1,45 @@
+Instructions for creating a launcher from keyboard:
+
+
+first create a script i.e "run-e4vip.sh":
+ #!/bin/bash
+gnome-terminal -e ./e4vip     
+
+
+-----------------------------------
+
+2: Then bind the script with a shorcut key i.e "control+e" using the xbindkeys command:
+     
+
+
+----------------------------------------------------------
+
+4: xkeybinds:
+
+  apt-get install xkeybinds
+  
+  xbindkeys --defaults > /home/.xbindkeysrc   /* To create the ".xbindkeyssrc file */
+
+  then add:
+     "/home/e4vip/run-e4vip.sh"
+       control+e
+----------------------------------
+
+5: To change key binding:
+  
+    delete xbindkeysrc file from user home directory
+
+Then kill the xbindkeys daemon process with the command:
+
+     killall xbindkeys
+
+and start it again with command
+
+     xbindkeys 
+
+---------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------
+
+

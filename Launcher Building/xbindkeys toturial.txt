@@ -1,0 +1,108 @@
+xbindkeys..
+
+sudo apt-get install xbindkeys
+
+Xbindkeys is a very versatile program that lets you remap keys very easily. It uses a config file, my default located in your home directory, to change key bindings into certain commands.
+
+To create a default config file you use the command:
+
+xbindkeys --defaults
+
+Which prints the default config file. So if you want to create the file containing the default values you would use:
+
+xbindkeys --defaults > $HOME/.xbindkeysrc
+
+Which prints the default values into a hidden file named .xbindkeysrc located in home (~).
+
+Now to actually change the bindings of keys we first need to know what the name or keysym of those keys is. xbindkeys allows us to use the -k handle to find the name of a key or key combination. Run:
+
+xbindkeys -k
+
+And press a key or key combination. Your output will look something similar to this (when pressing space):
+
+"NoCommand"
+m:0x10 + c:65
+Mod2 + space
+
+"No Command" tells us that currently no command is associated with the Space key.
+
+m:0x10 + c:65
+Mod2 + space  
+
+Is the name of the key/key combination.
+the config file..
+
+Lets open up the config file you made earlier:
+
+gedit .xbindkeysrc  
+
+Here is an excerpt from the default config file:
+
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+#
+
+# The release modifier is not a standard X modifier, but you can  
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Examples of commands:
+
+"xbindkeys_show" 
+ control+shift + q  
+
+Every line beginning with # is a comment and won't be read or run by xbindkeys.
+
+So far the only line that isn't commented out is:
+
+"xbindkeys_show" 
+ control+shift + q  
+
+This excerpt shows the basic syntax of xbindkeys commands:
+
+"Command to run (in quotes)"
+key to associate with command (no quotes)  
+
+So as you can see:
+
+"xbindkeys_show" 
+ control+shift + q  
+
+Runs the command xbindkeys_show when you press Ctrl+Shift+q.
+bind keys to commands..
+
+Now lets try binding a few keys. I recommend clearing the entire default file so that it's blank. It contains preset key bindings you probably don't want.
+
+Now lets say you want to use Ctrl+b to open your browser. First you need to know what the name or keysym of Ctrl+b is. As mentioned earlier you can use xbindkeys -k to find the name of a key or keys, but there is an easier way. For simple combinations like Ctrl+b you can just use:
+
+Control+b
+
+A lot easier isn't it!
+
+Now find the command for your favorite browser:
+
+    For Firefox: firefox
+
+    For Chromium: chromium-browser
+
+    For Opera: opera
+
+Remember the syntax from earlier? The xbindkeys command to launch Firefox (or your other favorite browser) when you press Ctrl+b is:
+
+"firefox"
+Control+b
+
+Now put that in your config file and save it. Now you might notice your command doesn't work yet, that's because xbindkeys isn't running. To start it just run xbindkeys from a terminal. Your Ctrl+b should now start your browser!
